@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://immages/redDirt_cc0.jpg" type="Texture" id=1]
+[ext_resource path="res://immages/redDirt_cc0_NORM.png" type="Texture" id=2]
+
+[resource]
+albedo_color = Color( 0.603922, 0.341176, 0, 1 )
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.39
+normal_enabled = true
+normal_scale = -0.31
+normal_texture = ExtResource( 2 )
+uv1_scale = Vector3( 25, 25, 25 )

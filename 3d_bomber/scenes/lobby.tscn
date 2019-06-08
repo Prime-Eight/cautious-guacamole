@@ -1,0 +1,178 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/lobby.gd" type="Script" id=1]
+[ext_resource path="res://immages/MPB_3d_im.png" type="Texture" id=2]
+
+[node name="lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="players" type="Panel" parent="."]
+editor/display_folded = true
+visible = false
+margin_left = 393.0
+margin_top = 113.0
+margin_right = 645.0
+margin_bottom = 468.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="label" type="Label" parent="players"]
+margin_left = 26.0
+margin_top = 18.0
+margin_right = 142.0
+margin_bottom = 32.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Awaiting Players..."
+
+[node name="start" type="Button" parent="players"]
+margin_left = 68.0
+margin_top = 307.0
+margin_right = 193.0
+margin_bottom = 336.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "START!"
+
+[node name="list" type="ItemList" parent="players"]
+margin_left = 25.0
+margin_top = 37.0
+margin_right = 229.0
+margin_bottom = 296.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="connect" type="Panel" parent="."]
+margin_left = 370.0
+margin_top = 97.0
+margin_right = 647.0
+margin_bottom = 501.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="ColorRect" type="TextureRect" parent="connect"]
+margin_left = 14.3515
+margin_top = 13.41
+margin_right = 264.352
+margin_bottom = 122.41
+texture = ExtResource( 2 )
+
+[node name="name_label" type="Label" parent="connect"]
+margin_left = 14.0
+margin_top = 169.0
+margin_right = 56.0
+margin_bottom = 183.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Name:"
+
+[node name="name" type="LineEdit" parent="connect"]
+margin_left = 17.0
+margin_top = 188.0
+margin_right = 173.0
+margin_bottom = 212.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "The Warrior"
+
+[node name="ip_label" type="Label" parent="connect"]
+margin_left = 14.0
+margin_top = 224.0
+margin_right = 56.0
+margin_bottom = 238.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "IP:"
+
+[node name="ip" type="LineEdit" parent="connect"]
+margin_left = 17.0
+margin_top = 243.0
+margin_right = 173.0
+margin_bottom = 267.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "127.0.0.1"
+
+[node name="port_label" type="Label" parent="connect"]
+margin_left = 15.0
+margin_top = 279.0
+margin_right = 54.0
+margin_bottom = 293.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Port:"
+
+[node name="port" type="SpinBox" parent="connect"]
+margin_left = 17.0
+margin_top = 298.0
+margin_right = 173.0
+margin_bottom = 322.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+min_value = 1024.0
+max_value = 65536.0
+value = 10567.0
+
+[node name="host" type="Button" parent="connect"]
+margin_left = 181.0
+margin_top = 189.0
+margin_right = 246.0
+margin_bottom = 209.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Host"
+
+[node name="join" type="Button" parent="connect"]
+margin_left = 181.0
+margin_top = 244.226
+margin_right = 246.0
+margin_bottom = 264.226
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "Join"
+
+[node name="error_label" type="Label" parent="connect"]
+margin_left = 16.0
+margin_top = 340.0
+margin_right = 261.0
+margin_bottom = 354.0
+size_flags_horizontal = 2
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0.820312, 0.291595, 0.291595, 1 )
+align = 1
+
+[node name="Quit" type="Button" parent="connect"]
+margin_left = 108.146
+margin_top = 365.287
+margin_right = 167.146
+margin_bottom = 385.287
+text = "Quit"
+
+[node name="Label" type="Label" parent="connect"]
+margin_left = 17.0
+margin_top = 123.0
+margin_right = 262.0
+margin_bottom = 145.0
+text = "Bomber Man 3D"
+align = 1
+valign = 1
+
+[node name="error" type="AcceptDialog" parent="."]
+visible = true
+margin_right = 83.0
+margin_bottom = 58.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+[connection signal="pressed" from="players/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="connect/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="connect/join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="connect/Quit" to="." method="_on_Quit_pressed"]

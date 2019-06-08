@@ -1,0 +1,190 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scripts/Player3d.gd" type="Script" id=1]
+[ext_resource path="res://materials/player_spatmat.tres" type="Material" id=2]
+
+[sub_resource type="SphereMesh" id=1]
+radius = 0.5
+height = 0.5
+radial_segments = 16
+rings = 16
+is_hemisphere = true
+
+[sub_resource type="SphereShape" id=2]
+radius = 0.5
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.3, 0.25, 0.3 )
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 16
+
+[sub_resource type="SpatialMaterial" id=5]
+metallic = 0.01
+metallic_specular = 0.68
+roughness = 0.08
+
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 0.05, 0.05, 0.01 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=8]
+radius = 0.49
+height = 0.9
+radial_segments = 16
+rings = 16
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.94902, 0.768627, 0.560784, 1 )
+
+[sub_resource type="CubeMesh" id=10]
+size = Vector3( 0.2, 0.1, 0.4 )
+
+[sub_resource type="SpatialMaterial" id=11]
+albedo_color = Color( 0.00784314, 0.168627, 0.356863, 1 )
+
+[sub_resource type="SphereMesh" id=12]
+radius = 0.3
+height = 0.1
+radial_segments = 16
+rings = 16
+is_hemisphere = true
+
+[sub_resource type="Animation" id=13]
+resource_name = "standing"
+length = 1.5
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -2, 0 ), Vector3( 0, 2, 0 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 4.0
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 720, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:stunned")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Player3d" type="KinematicBody"]
+transform = Transform( 0.999643, 0, 0.0267094, 0, 1, 0, -0.0267094, 0, 0.999643, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="PlayerName" type="Control" parent="."]
+margin_right = 1.0
+margin_bottom = 1.0
+
+[node name="label" type="Label" parent="PlayerName"]
+margin_left = -30.5348
+margin_top = -37.2211
+margin_right = 30.4652
+margin_bottom = -23.2211
+text = "My Name"
+align = 1
+valign = 1
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.993897, -0.0533923, 0.0965258, 0, 0.875053, 0.484027, -0.110308, -0.481074, 0.869713, 2.3227, 1.41276, 0 )
+visible = false
+
+[node name="Hair" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.540926, 0.84107, 0, -0.84107, 0.540926, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250649, 0 )
+shape = SubResource( 3 )
+
+[node name="eye" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13421, 0.182863, 0.357002 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="pupil" type="MeshInstance" parent="eye"]
+transform = Transform( 1, 0, 0, 0, 0.884396, 0.466738, 0, -0.466738, 0.884396, 0, 0.0494748, 0.0879685 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="eye2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.134, 0.182615, 0.357287 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="pupil2" type="MeshInstance" parent="eye2"]
+transform = Transform( 1, 0, 0, 0, 0.884396, 0.466738, 0, -0.466738, 0.884396, 0, 0.0494748, 0.0877536 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="face" type="MeshInstance" parent="."]
+mesh = SubResource( 8 )
+material/0 = SubResource( 9 )
+
+[node name="foot" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.174658, -0.448545, 0.123665 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="foot2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.171, -0.449, 0.124 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="smile" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.999743, 0.0226582, 0, -0.0226582, -0.999743, 0, -0.0248641, 0.235383 )
+mesh = SubResource( 12 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/standing = SubResource( 13 )
+anims/stunned = SubResource( 14 )
